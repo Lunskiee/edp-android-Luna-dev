@@ -16,6 +16,7 @@ import com.example.myapplication.data.Post
 import java.text.SimpleDateFormat
 import java.util.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostsScreen(vm: PostsViewModel) {
 
@@ -24,8 +25,36 @@ fun PostsScreen(vm: PostsViewModel) {
 
     var editing by remember { mutableStateOf<Post?>(null) }
     var showEditor by remember { mutableStateOf(false) }
+    var postToDelete by remember { mutableStateOf<Post?>(null) }
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Column {
+                        Text("MySocialMediaLuna")
+                        Text(
+                            "Share any thoughts from here",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                },
+                actions = {
+                    if (posts.isNotEmpty()) {
+                        Text(
+                            "${posts.size} posts",
+                            modifier = Modifier.padding(end = 16.dp),
+                            style = MaterialTheme.typography.labelLarge
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                )
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = { editing = null; showEditor = true }) {
                 Icon(Icons.Default.Add, contentDescription = "New post")
@@ -42,11 +71,18 @@ fun PostsScreen(vm: PostsViewModel) {
                 contentPadding = PaddingValues(12.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
+                item {
+                    Text(
+                        "Recent Posts",
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                }
                 items(posts, key = { it.id }) { post ->
                     PostCard(
                         post = post,
                         onEdit = { editing = post; showEditor = true },
-                        onDelete = { vm.deletePost(post) },
+                        onDelete = { postToDelete = post },
                     )
                 }
             }
@@ -66,6 +102,27 @@ fun PostsScreen(vm: PostsViewModel) {
                 }
                 showEditor = false
             },
+        )
+    }
+
+    if (postToDelete != null) {
+        AlertDialog(
+            onDismissRequest = { postToDelete = null },
+            title = { Text("Delete post?") },
+            text = { Text("This post will be gone forever.") },
+            confirmButton = {
+                TextButton(onClick = {
+                    postToDelete?.let { vm.deletePost(it) }
+                    postToDelete = null
+                }) {
+                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { postToDelete = null }) {
+                    Text("Cancel")
+                }
+            }
         )
     }
 }
