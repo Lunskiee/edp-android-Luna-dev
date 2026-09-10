@@ -16,7 +16,6 @@ fun ProfileScreen(postsVm: PostsViewModel, themeVm: ThemeViewModel) {
 
     val posts by postsVm.posts.collectAsStateWithLifecycle()
 
-    // TODO 12a: collect the saved theme value from themeVm
     val darkTheme by themeVm.isDarkTheme.collectAsStateWithLifecycle()
 
     Column(

@@ -20,7 +20,6 @@ import java.util.*
 @Composable
 fun PostsScreen(vm: PostsViewModel) {
 
-    // GIVEN: watch the list of posts
     val posts by vm.posts.collectAsStateWithLifecycle()
 
     var editing by remember { mutableStateOf<Post?>(null) }
@@ -34,7 +33,7 @@ fun PostsScreen(vm: PostsViewModel) {
                     Column {
                         Text("MySocialMediaLuna")
                         Text(
-                            "Share any thoughts from here",
+                            "Share your thoughts and connect with friends",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

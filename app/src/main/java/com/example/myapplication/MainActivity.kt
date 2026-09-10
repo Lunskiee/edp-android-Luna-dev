@@ -25,10 +25,8 @@ class MainActivity : ComponentActivity() {
             val postsVm: PostsViewModel = viewModel(factory = factory)
             val themeVm: ThemeViewModel = viewModel(factory = factory)
 
-            // TODO 13a: read the saved theme
             val darkTheme by themeVm.isDarkTheme.collectAsStateWithLifecycle()
 
-            // TODO 13b: pass darkTheme into your theme, and switch dynamic colour off
             MyApplicationTheme(darkTheme = darkTheme, dynamicColor = false) {
                 MySocialApp(postsVm, themeVm)
             }
@@ -36,7 +34,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// Given — copy exactly. This draws the bottom bar and swaps the two pages.
 @Composable
 fun MySocialApp(postsVm: PostsViewModel, themeVm: ThemeViewModel) {
     var tab by rememberSaveable { mutableIntStateOf(0) }

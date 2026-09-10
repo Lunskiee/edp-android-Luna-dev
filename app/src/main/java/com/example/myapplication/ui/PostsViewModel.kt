@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 
 class PostsViewModel(private val repo: PostRepository) : ViewModel() {
 
-    // GIVEN (read it, do not change it): the list the screen watches
     val posts: StateFlow<List<Post>> = repo.observePosts()
         .stateIn(
             scope = viewModelScope,
@@ -17,17 +16,14 @@ class PostsViewModel(private val repo: PostRepository) : ViewModel() {
             initialValue = emptyList(),
         )
 
-    // TODO 9a: write a new post
     fun addPost(content: String) {
         viewModelScope.launch { repo.addPost(content) }
     }
 
-    // TODO 9b: save changes to an existing post
     fun editPost(post: Post, newContent: String) {
         viewModelScope.launch { repo.editPost(post, newContent) }
     }
 
-    // TODO 9c: delete a post
     fun deletePost(post: Post) {
         viewModelScope.launch { repo.removePost(post) }
     }
