@@ -36,7 +36,6 @@ fun LoginScreen(
         Text("LiceoAccount", style = MaterialTheme.typography.headlineMedium)
         Text("Log in to your account")
 
-        // 10a: Email
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
@@ -46,7 +45,6 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        // 10b & 13: Password
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -62,12 +60,10 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        // 10c: Error message
         if (state is AuthUiState.Error) {
             Text(state.message, color = MaterialTheme.colorScheme.error)
         }
 
-        // 10d: Log in button
         Button(
             onClick = { onLogin(email, password) },
             enabled = !isLoading,
@@ -83,7 +79,6 @@ fun LoginScreen(
             }
         }
 
-        // 10e: Create account button
         TextButton(onClick = onGoToRegister) {
             Text("No account yet? Create one")
         }
