@@ -1,4 +1,4 @@
-package edu.liceo.fieldkit.data.network.dto
+package edu.liceo.account.data.network.dto
 
 import kotlinx.serialization.Serializable
 

@@ -1,6 +1,6 @@
-package edu.liceo.fieldkit.data.network.dto
+package edu.liceo.account.data.network.dto
 
-import edu.liceo.fieldkit.domain.model.User
+import edu.liceo.account.domain.model.User
 
 fun UserDto.toDomain(): User = User(
     id = id ?: "",

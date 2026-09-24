@@ -1,4 +1,4 @@
-package edu.liceo.fieldkit.ui
+package edu.liceo.account.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -8,21 +8,20 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun RegisterScreen(
+fun LoginScreen(
     state: AuthUiState,
-    onCreate: (String, String, String, String) -> Unit,
-    onGoToLogin: () -> Unit
+    onLogin: (String, String) -> Unit,
+    onGoToRegister: () -> Unit
 ) {
-    var fullName by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
-    var birthdate by rememberSaveable { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(false) }
     val isLoading = state is AuthUiState.Loading
 
     Column(
@@ -34,15 +33,8 @@ fun RegisterScreen(
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Text("Create account", style = MaterialTheme.typography.headlineMedium)
-
-        OutlinedTextField(
-            value = fullName,
-            onValueChange = { fullName = it },
-            label = { Text("Full name") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
+        Text("LiceoAccount", style = MaterialTheme.typography.headlineMedium)
+        Text("Log in to your account")
 
         OutlinedTextField(
             value = email,
@@ -59,16 +51,12 @@ fun RegisterScreen(
             label = { Text("Password") },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        OutlinedTextField(
-            value = birthdate,
-            onValueChange = { birthdate = it },
-            label = { Text("Birthdate") },
-            placeholder = { Text("YYYY-MM-DD") },
-            singleLine = true,
+            visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                TextButton(onClick = { showPassword = !showPassword }) {
+                    Text(if (showPassword) "Hide" else "Show")
+                }
+            },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -76,15 +64,8 @@ fun RegisterScreen(
             Text(state.message, color = MaterialTheme.colorScheme.error)
         }
 
-        if (state is AuthUiState.AccountCreated) {
-            Text(
-                "Account created for ${state.name}. You can now log in.",
-                color = Color(0xFF2E7D32)
-            )
-        }
-
         Button(
-            onClick = { onCreate(fullName, email, password, birthdate) },
+            onClick = { onLogin(email, password) },
             enabled = !isLoading,
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -94,12 +75,12 @@ fun RegisterScreen(
                     strokeWidth = 2.dp
                 )
             } else {
-                Text("Create account")
+                Text("Log in")
             }
         }
 
-        TextButton(onClick = onGoToLogin) {
-            Text("Already have an account? Log in")
+        TextButton(onClick = onGoToRegister) {
+            Text("No account yet? Create one")
         }
     }
 }

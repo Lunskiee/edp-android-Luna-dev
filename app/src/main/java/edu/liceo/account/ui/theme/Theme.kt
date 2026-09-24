@@ -1,4 +1,4 @@
-package edu.liceo.fieldkit.ui.theme
+package edu.liceo.account.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize

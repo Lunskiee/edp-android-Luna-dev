@@ -1,12 +1,12 @@
-package edu.liceo.fieldkit.data
+package edu.liceo.account.data
 
-import edu.liceo.fieldkit.core.AppResult
-import edu.liceo.fieldkit.data.network.NetworkModule
-import edu.liceo.fieldkit.data.network.UserApiService
-import edu.liceo.fieldkit.data.network.dto.NewUserDto
-import edu.liceo.fieldkit.data.network.dto.UserDto
-import edu.liceo.fieldkit.data.network.dto.toDomain
-import edu.liceo.fieldkit.domain.model.User
+import edu.liceo.account.core.AppResult
+import edu.liceo.account.data.network.NetworkModule
+import edu.liceo.account.data.network.UserApiService
+import edu.liceo.account.data.network.dto.NewUserDto
+import edu.liceo.account.data.network.dto.UserDto
+import edu.liceo.account.data.network.dto.toDomain
+import edu.liceo.account.domain.model.User
 import kotlinx.serialization.SerializationException
 import retrofit2.HttpException
 import java.io.IOException

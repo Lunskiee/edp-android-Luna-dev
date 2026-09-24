@@ -1,4 +1,4 @@
-package edu.liceo.fieldkit.ui
+package edu.liceo.account.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

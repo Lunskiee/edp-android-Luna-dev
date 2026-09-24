@@ -1,12 +1,12 @@
-package edu.liceo.fieldkit.ui
+package edu.liceo.account.ui
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import edu.liceo.fieldkit.core.AppResult
-import edu.liceo.fieldkit.data.UserRepository
+import edu.liceo.account.core.AppResult
+import edu.liceo.account.data.UserRepository
 import kotlinx.coroutines.launch
 
 class AuthViewModel(

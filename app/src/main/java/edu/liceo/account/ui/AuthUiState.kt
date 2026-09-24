@@ -1,6 +1,6 @@
-package edu.liceo.fieldkit.ui
+package edu.liceo.account.ui
 
-import edu.liceo.fieldkit.domain.model.User
+import edu.liceo.account.domain.model.User
 
 sealed interface AuthUiState {
     data object Idle : AuthUiState

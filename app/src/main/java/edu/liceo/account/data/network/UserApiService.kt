@@ -1,7 +1,7 @@
-package edu.liceo.fieldkit.data.network
+package edu.liceo.account.data.network
 
-import edu.liceo.fieldkit.data.network.dto.NewUserDto
-import edu.liceo.fieldkit.data.network.dto.UserDto
+import edu.liceo.account.data.network.dto.NewUserDto
+import edu.liceo.account.data.network.dto.UserDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

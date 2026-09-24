@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "edu.liceo.fieldkit"
+    namespace = "edu.liceo.account"
     compileSdk = 35
 
     defaultConfig {

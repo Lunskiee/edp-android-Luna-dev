@@ -1,4 +1,4 @@
-package edu.liceo.fieldkit.domain.model
+package edu.liceo.account.domain.model
 
 data class User(
     val id: String,

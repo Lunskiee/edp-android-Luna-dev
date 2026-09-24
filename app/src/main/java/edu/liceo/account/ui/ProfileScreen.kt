@@ -1,4 +1,4 @@
-package edu.liceo.fieldkit.ui
+package edu.liceo.account.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import edu.liceo.fieldkit.domain.model.User
+import edu.liceo.account.domain.model.User
 
 @Composable
 fun ProfileScreen(user: User, onLogout: () -> Unit) {

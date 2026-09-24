@@ -1,4 +1,4 @@
-package edu.liceo.fieldkit.data.network
+package edu.liceo.account.data.network
 
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
